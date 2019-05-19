@@ -3,7 +3,7 @@ import { gql } from 'apollo-server-koa'
 export const NewFont = gql`
   input NewFont {
     name: String!
-    domain: Domain!
+    domain: String!
     provider: String!
     uri: String
     path: String
