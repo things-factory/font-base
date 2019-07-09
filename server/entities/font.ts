@@ -1,9 +1,10 @@
-import { Column, Entity, Index, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
-import { Domain, DomainBaseEntity } from '@things-factory/shell'
+import { CreateDateColumn, UpdateDateColumn, Column, Entity, Index, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
+import { Domain } from '@things-factory/shell'
+import { User } from '@things-factory/auth-base'
 
 @Entity('fonts')
 @Index('ix_font_0', (font: Font) => [font.domain, font.name], { unique: true })
-export class Font extends DomainBaseEntity {
+export class Font {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
@@ -28,4 +29,16 @@ export class Font extends DomainBaseEntity {
 
   @Column('boolean')
   active: boolean
+
+  @CreateDateColumn()
+  createdAt: Date
+
+  @UpdateDateColumn()
+  updatedAt: Date
+
+  @ManyToOne(type => User)
+  creator: User
+
+  @ManyToOne(type => User)
+  updater: User
 }
