@@ -1,7 +1,7 @@
 import WebFont from 'webfontloader'
 import { UPDATE_FONT_LIST, CLEAR_FONT_LIST } from '../actions/font'
 
-const fonts = (state = [], action) => {
+const font = (state = [], action) => {
   switch (action.type) {
     case UPDATE_FONT_LIST:
       let newState = action.list
@@ -25,4 +25,4 @@ const fonts = (state = [], action) => {
   }
 }
 
-export default fonts
+export default font
