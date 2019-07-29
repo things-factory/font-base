@@ -8,12 +8,12 @@ export const fetchFontList = () => async dispatch => {
     const data = await client.fetchFontList()
 
     dispatch({
-      type: 'FONT-LIST',
+      type: UPDATE_FONT_LIST,
       list: data.fonts
     })
   } catch (error) {
     dispatch({
-      type: 'CLEAR-FONT-LIST'
+      type: CLEAR_FONT_LIST
     })
   }
 }
