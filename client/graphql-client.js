@@ -1,11 +1,12 @@
 import gql from 'graphql-tag'
-import { client } from '@things-factory/shell'
+import { client, gqlBuilder } from '@things-factory/shell'
 
-export async function fetchFontList() {
+export async function fetchFontList(listParam) {
   const response = await client.query({
     query: gql`
-      {
-        fonts {
+    {
+      fonts(${gqlBuilder.buildArgs(listParam)}) {
+        items {
           name
           provider
           uri
@@ -14,7 +15,9 @@ export async function fetchFontList() {
           createdAt
           updatedAt
         }
+        total
       }
+    }
     `
   })
 

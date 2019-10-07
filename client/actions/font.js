@@ -3,13 +3,13 @@ import * as client from '../graphql-client'
 export const UPDATE_FONT_LIST = 'UPDATE_FONT_LIST'
 export const CLEAR_FONT_LIST = 'CLEAR_FONT_LIST'
 
-export const fetchFontList = () => async dispatch => {
+export const fetchFontList = listParams => async dispatch => {
   try {
-    const data = await client.fetchFontList()
+    const data = await client.fetchFontList(listParams)
 
     dispatch({
       type: UPDATE_FONT_LIST,
-      list: data.fonts
+      list: data && data.fonts && data.fonts.items
     })
   } catch (error) {
     dispatch({
@@ -24,7 +24,7 @@ export const createFont = font => async dispatch => {
 
     const createdFont = data.createFont
 
-    dispatch(fetchFontList())
+    dispatch(fetchFontList({}))
   } catch (error) {
     console.error(error)
   }
@@ -36,7 +36,7 @@ export const updateFont = font => async dispatch => {
 
     const updatedFont = data.updateFont
 
-    dispatch(fetchFontList())
+    dispatch(fetchFontList({}))
   } catch (error) {
     console.error(error)
     /* TODO error */
@@ -49,7 +49,7 @@ export const deleteFont = font => async dispatch => {
 
     const data = await client.deleteFont(name)
 
-    dispatch(fetchFontList())
+    dispatch(fetchFontList({}))
   } catch (error) {
     console.error(error)
     /* TODO error */

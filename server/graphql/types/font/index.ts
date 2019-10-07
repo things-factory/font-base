@@ -1,6 +1,7 @@
 import { Font } from './font'
 import { NewFont } from './new-font'
 import { FontPatch } from './font-patch'
+import { FontList } from './font-list'
 
 export const Mutation = `
   createFont (
@@ -18,8 +19,8 @@ export const Mutation = `
 `
 
 export const Query = `
-  fonts: [Font]
+  fonts: FontList
   font(id: String!): Font
 `
 
-export const Types = [Font, NewFont, FontPatch]
+export const Types = [Font, FontList, NewFont, FontPatch]
