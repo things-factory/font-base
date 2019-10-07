@@ -8,18 +8,18 @@ export const Mutation = `
   ): Font
 
   updateFont (
-    name: String!
+    id: String!
     patch: FontPatch!
   ): Font
 
   deleteFont (
-    name: String!
+    id: String!
   ): Font
 `
 
 export const Query = `
   fonts: [Font]
-  font(name: String!): Font
+  font(id: String!): Font
 `
 
 export const Types = [Font, NewFont, FontPatch]
