@@ -19,7 +19,7 @@ export const Mutation = `
 `
 
 export const Query = `
-  fonts: FontList
+  fonts(filters: [Filter], pagination: Pagination, sortings: [Sorting]): FontList
   font(id: String!): Font
 `
 
