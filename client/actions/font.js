@@ -5,11 +5,11 @@ export const CLEAR_FONT_LIST = 'CLEAR_FONT_LIST'
 
 export const fetchFontList = listParams => async dispatch => {
   try {
-    const data = await client.fetchFontList(listParams)
+    const fonts = await client.fetchFontList(listParams)
 
     dispatch({
       type: UPDATE_FONT_LIST,
-      list: data && data.fonts && data.fonts.items
+      list: fonts && fonts.items
     })
   } catch (error) {
     dispatch({

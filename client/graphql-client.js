@@ -21,7 +21,7 @@ export async function fetchFontList(listParam) {
     `
   })
 
-  return response.data
+  return response.data && response.data.fonts
 }
 
 export async function createFont(font) {
