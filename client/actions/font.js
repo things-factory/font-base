@@ -5,7 +5,7 @@ export const CLEAR_FONT_LIST = 'CLEAR_FONT_LIST'
 
 export const fetchFontList = listParams => async dispatch => {
   try {
-    const fonts = await client.fetchFontList(listParams)
+    const fonts = await client.fetchFontList(listParams || { filters: [] })
 
     dispatch({
       type: UPDATE_FONT_LIST,
@@ -24,7 +24,7 @@ export const createFont = font => async dispatch => {
 
     const createdFont = data.createFont
 
-    dispatch(fetchFontList({}))
+    dispatch(fetchFontList())
   } catch (error) {
     console.error(error)
   }
@@ -36,7 +36,7 @@ export const updateFont = font => async dispatch => {
 
     const updatedFont = data.updateFont
 
-    dispatch(fetchFontList({}))
+    dispatch(fetchFontList())
   } catch (error) {
     console.error(error)
     /* TODO error */
@@ -49,7 +49,7 @@ export const deleteFont = font => async dispatch => {
 
     const data = await client.deleteFont(name)
 
-    dispatch(fetchFontList({}))
+    dispatch(fetchFontList())
   } catch (error) {
     console.error(error)
     /* TODO error */

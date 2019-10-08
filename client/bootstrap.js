@@ -1,4 +1,5 @@
 import { store } from '@things-factory/shell'
+import { fetchFontList } from './actions/font'
 import font from './reducers/font'
 import { auth } from '@things-factory/auth-base'
 
@@ -8,6 +9,6 @@ export default function bootstrap() {
   })
 
   auth.on('signin', () => {
-    store.dispatch(fetchFontList({}))
+    store.dispatch(fetchFontList())
   })
 }
