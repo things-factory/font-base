@@ -12,6 +12,7 @@ export const fetchFontList = listParams => async dispatch => {
       list: fonts && fonts.items
     })
   } catch (error) {
+    console.error(error)
     dispatch({
       type: CLEAR_FONT_LIST
     })
