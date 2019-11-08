@@ -1,7 +1,7 @@
 import { getAllGoogleFonts } from './controllers/google-fonts'
 
 process.on('bootstrap-module-history-fallback' as any, (app, fallbackOption) => {
-  fallbackOption.whiteList.push(...['all-google-fonts'].map(path => `^\/${path}($|[/?#])`))
+  fallbackOption.whiteList.push(`^\/(${['all-google-fonts'].join('|')})($|[/?#])`)
 })
 
 process.on('bootstrap-module-route' as any, (app, routes) => {
