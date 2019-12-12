@@ -26,5 +26,7 @@
     "@things-factory/auth-base": "^1.0.0-alpha.1",
     "@things-factory/shell": "^1.0.0-alpha.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@things-factory/board-app": "^1.0.0-alpha.1"
+  }
 }

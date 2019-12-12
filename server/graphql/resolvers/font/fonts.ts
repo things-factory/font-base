@@ -4,7 +4,7 @@ import { Font } from '../../../entities'
 
 export const fontsResolver = {
   async fonts(_: any, params: ListParam, context: any) {
-    const convertedParams = convertListParams(params)
+    const convertedParams = convertListParams(params, context.state.domain.id)
     const [items, total] = await getRepository(Font).findAndCount({
       ...convertedParams,
       relations: ['domain', 'creator', 'updater']
