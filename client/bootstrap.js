@@ -8,7 +8,7 @@ export default function bootstrap() {
     font
   })
 
-  auth.on('signin', () => {
+  auth.on('profile', () => {
     store.dispatch(fetchFontList())
   })
 }

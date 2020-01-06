@@ -8,6 +8,6 @@ export const deleteFont = {
       where: { domain: context.state.domain, id }
     })
 
-    await repository.delete(id)
+    await repository.remove(font)
   }
 }
