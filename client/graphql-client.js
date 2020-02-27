@@ -75,17 +75,17 @@ export async function updateFont(font) {
   return response.data
 }
 
-export async function deleteFont(name) {
+export async function deleteFont(id) {
   const response = await client.mutate({
     mutation: gql`
-      mutation($name: String!) {
-        deleteFont(name: $name) {
+      mutation($id: String!) {
+        deleteFont(id: $id) {
           name
         }
       }
     `,
     variables: {
-      name
+      id
     }
   })
 
