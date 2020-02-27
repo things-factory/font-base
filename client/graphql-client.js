@@ -1,25 +1,26 @@
 import gql from 'graphql-tag'
 import { client } from '@things-factory/shell'
-import { gqlBuilder } from '@things-factory/utils'
 
 export async function fetchFontList(listParam) {
   const response = await client.query({
     query: gql`
-    {
-      fonts(${gqlBuilder.buildArgs(listParam)}) {
-        items {
-          name
-          provider
-          uri
-          path
-          active
-          createdAt
-          updatedAt
+      query($filters: [Filter], $pagination: Pagination, $sortings: [Sorting]) {
+        fonts(filters: $filters, pagination: $pagination, sortings: $sortings) {
+          items {
+            id
+            name
+            provider
+            uri
+            path
+            active
+            createdAt
+            updatedAt
+          }
+          total
         }
-        total
       }
-    }
-    `
+    `,
+    variables: listParam
   })
 
   return response.data && response.data.fonts
