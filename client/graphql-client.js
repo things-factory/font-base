@@ -1,6 +1,9 @@
 import gql from 'graphql-tag'
 import { client } from '@things-factory/shell'
 
+/**
+ * @param {Object} listParam {filters, pagination, sortings}
+ */
 export async function fetchFontList(listParam) {
   const response = await client.query({
     query: gql`
@@ -26,9 +29,10 @@ export async function fetchFontList(listParam) {
   return response.data && response.data.fonts
 }
 
+/**
+ * @param {Object} font Font patch
+ */
 export async function createFont(font) {
-  var { name, provider, uri, path, active = false } = font
-
   const response = await client.mutate({
     mutation: gql`
       mutation CreateFont($font: NewFont!) {
@@ -44,13 +48,16 @@ export async function createFont(font) {
       }
     `,
     variables: {
-      font: { name, provider, uri, path, active }
+      font: { active: false, ...font }
     }
   })
 
   return response.data
 }
 
+/**
+ * @param {Object} font Font patch
+ */
 export async function updateFont(font) {
   var { id, ...patch } = font
 
@@ -78,6 +85,9 @@ export async function updateFont(font) {
   return response.data
 }
 
+/**
+ * @param {String} id Font id
+ */
 export async function deleteFont(id) {
   const response = await client.mutate({
     mutation: gql`
