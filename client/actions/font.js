@@ -46,9 +46,9 @@ export const updateFont = font => async dispatch => {
 
 export const deleteFont = font => async dispatch => {
   try {
-    var { name } = font
+    var { id } = font
 
-    const data = await client.deleteFont(name)
+    const data = await client.deleteFont(id)
 
     dispatch(fetchFontList())
   } catch (error) {
