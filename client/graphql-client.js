@@ -52,12 +52,13 @@ export async function createFont(font) {
 }
 
 export async function updateFont(font) {
-  var { name, provider, uri, path } = font
+  var { id, ...patch } = font
 
   const response = await client.mutate({
     mutation: gql`
-      mutation UpdateFont($patch: FontPatch!) {
-        updateFont(patch: $font) {
+      mutation UpdateFont($id: String!, $patch: FontPatch!) {
+        updateFont(id: $id, patch: $patch) {
+          id
           name
           provider
           uri
@@ -69,7 +70,8 @@ export async function updateFont(font) {
       }
     `,
     variables: {
-      font: { name, path }
+      id,
+      patch
     }
   })
 
