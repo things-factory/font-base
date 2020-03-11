@@ -21,7 +21,7 @@ export class seedFonts1556862253039 implements MigrationInterface {
         provider: 'google',
         uri: '',
         path: '',
-        active: false
+        active: true
       })
     })
   }
