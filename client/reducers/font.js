@@ -5,12 +5,13 @@ const font = (state = [], action) => {
   switch (action.type) {
     case UPDATE_FONT_LIST:
       let newState = action.list
+      let activatedFonts = newState.filter(font => font.active)
 
       let googles = []
       let customs = []
       let customFontCSS = ''
 
-      newState.forEach(font => {
+      activatedFonts.forEach(font => {
         switch (font.provider) {
           case 'google':
             googles.push(font.name)
